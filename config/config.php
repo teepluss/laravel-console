@@ -4,11 +4,10 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Console routes filter
+	| Route middleware
 	|--------------------------------------------------------------------------
 	|
-	| Set filter used for managing access to the console. By default, filter
-	| 'console_whitelist' allows only people from 'whitelist' array below.
+	| Add middleware to protect your "console".
 	|
 	*/
 
