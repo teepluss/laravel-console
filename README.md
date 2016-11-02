@@ -24,7 +24,7 @@ This package is intended for a local testing, and **shouldn't get nowhere near y
 To install through composer, simply run the following command:
 
 ```
-php cocomposer require teepluss/laravel-console
+php composer require teepluss/console
 ```
 
 Register the console service provider in `config/app.php`:
