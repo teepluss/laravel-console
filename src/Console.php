@@ -1,6 +1,10 @@
-<?php namespace Teepluss\Console;
+<?php
 
-use Event, DB;
+namespace Teepluss\Console;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Database\Events\QueryExecuted;
 
 class Console
 {
@@ -11,7 +15,7 @@ class Console
 	 *
 	 * @var array
 	 */
-	public static $error_map = array(
+	public static $error_map = [
 		E_ERROR             => 'E_ERROR',
 		E_WARNING           => 'E_WARNING',
 		E_PARSE             => 'E_PARSE',
@@ -28,15 +32,15 @@ class Console
 		E_DEPRECATED        => 'E_DEPRECATED',
 		E_USER_DEPRECATED   => 'E_USER_DEPRECATED',
 		E_ALL               => 'E_ALL',
-	);
+	];
 
 	/**
 	 * Execution profile.
 	 *
 	 * @var array
 	 */
-	public static $profile = array(
-		'queries'      => array(),
+	public static $profile = [
+		'queries'      => [],
 		'memory'       => 0,
 		'memory_peak'  => 0,
 		'time'         => 0,
@@ -45,7 +49,7 @@ class Console
 		'output'       => '',
 		'output_size'  => 0,
 		'error'        => false
-	);
+	];
 
 	/**
 	 * Adds one or multiple fields into profile.
@@ -86,12 +90,12 @@ class Console
 		}
 
 		// Extend the profile with current data
-		static::addProfile(array(
+		static::addProfile([
 			'memory'       => memory_get_usage(true),
 			'memory_peak'  => memory_get_peak_usage(true),
 			'time_queries' => round($time_queries),
 			'time_total'   => round((microtime(true) - LARAVEL_START) * 1000),
-		));
+		]);
 
 		return static::$profile;
 	}
@@ -119,11 +123,11 @@ class Console
 		}
 
 		// Extend the profile
-		static::addProfile(array(
+		static::addProfile([
 			'time'        => round(($console_execute_end - $console_execute_start) * 1000),
 			'output'      => $output,
 			'output_size' => strlen($output)
-		));
+		]);
 
 		return static::getProfile();
 	}
@@ -137,8 +141,7 @@ class Console
 	 */
 	public static function query($sql, $bindings, $time)
 	{
-		foreach ($bindings as $binding)
-		{
+		foreach ($bindings as $binding) {
 			// Sometimes, object $binding is passed, and needs to be stringified
 			if (gettype($binding) == 'object') {
 				$class_name = get_class($binding);
@@ -146,7 +149,6 @@ class Console
 					case 'DateTime':
 						$binding = $binding->format('Y-m-d H:i:s e');
 						break;
-
 					default:
 						$binding = '(object)' . $class_name;
 				}
@@ -158,10 +160,10 @@ class Console
 			$sql = htmlspecialchars(htmlspecialchars_decode($sql));
 		}
 
-		static::$profile['queries'][] = array(
+		static::$profile['queries'][] = [
 			'query' => $sql,
 			'time'  => $time
-		);
+		];
 	}
 
 	/**
@@ -175,7 +177,7 @@ class Console
 				// Laravel 5.2 changed the way some core events worked. We must account for
 				// the first argument being an "event object", where arguments are passed
 				// via object properties, instead of individual arguments.
-				if ($query instanceof \Illuminate\Database\Events\QueryExecuted) {
+				if ($query instanceof QueryExecuted) {
 					$bindings = $query->bindings;
 					$time = $query->time;
 					$connection = $query->connection;
@@ -183,6 +185,7 @@ class Console
 				} else {
 					$connection = $db->connection($connectionName);
 				}
+
 				Console::query((string) $query, $bindings, $time);
 			}
 		);
@@ -198,7 +201,7 @@ class Console
 	public static function normalizeError($error, $type = 0)
 	{
 		// Set human readable error type
-		if (isset($error['type']) and isset(static::$error_map[$error['type']])) {
+		if (isset($error['type']) && isset(static::$error_map[$error['type']])) {
 			$error['type'] = static::$error_map[$error['type']];
 		}
 
