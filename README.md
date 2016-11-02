@@ -2,7 +2,7 @@
 
 In-browser console for Laravel 5 PHP framework.
 
-This package is a re-published, re-organised and maintained version of darsain/laravel-console, which isn't maintained anymore.
+This package is a re-published, re-organised and maintained version of [darsain/laravel-console](https://github.com/darsain/laravel-console), which isn't maintained anymore.
 
 This package executes your code within `ConsoleController@postExecute` context, and displays the produced output.
 
