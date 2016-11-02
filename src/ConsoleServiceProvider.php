@@ -1,6 +1,8 @@
 <?php namespace Teepluss\Console;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+
 
 class ConsoleServiceProvider extends ServiceProvider {
 
@@ -16,8 +18,10 @@ class ConsoleServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
+        $router->middleware('console_protect', Http\Middlewares\Console::class);
+
         // Publish config.
         $this->publishes([
             __DIR__.'/../config/config.php' => config_path('console.php'),

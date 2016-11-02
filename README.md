@@ -47,3 +47,7 @@ And you are done! Open the console in:
 ```
 yourdomain.com/console
 ```
+
+The default username and password is `username:password`
+> You can change on config/console.php
+
