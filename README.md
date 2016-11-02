@@ -32,14 +32,14 @@ Register the console service provider in `config/app.php`:
 ```php
 'providers' => [
 	...
-	Darsain\Console\ConsoleServiceProvider::class,
+	Teepluss\Console\ConsoleServiceProvider::class,
 ];
 ```
 
 Then publish the package assets:
 
 ```
-php artisan vendor:publish --provider="Darsain\Console\ConsoleServiceProvider"
+php artisan vendor:publish --provider="Teepluss\Console\ConsoleServiceProvider"
 ```
 
 And you are done! Open the console in:
