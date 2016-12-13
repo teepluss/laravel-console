@@ -25,5 +25,16 @@ return array(
     'credentials' => [
         'username' => env('CONSOLE_USER', 'username'),
         'password' => env('CONSOLE_PASS', 'password')
-    ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom asset url
+    |--------------------------------------------------------------------------
+    |
+    | Custom asset url for alternate path or domain.
+    |
+    */
+
+    'asset_url' => asset('vendor/console')
 );
