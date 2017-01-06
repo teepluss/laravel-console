@@ -36,5 +36,5 @@ return array(
     |
     */
 
-    'asset_url' => asset('vendor/console')
+    'asset_url' => '/vendor/console'
 );
