@@ -20,7 +20,8 @@ class ConsoleServiceProvider extends ServiceProvider {
      */
     public function boot(Router $router)
     {
-        $router->middleware('console_protect', Http\Middlewares\Console::class);
+        $middlewareMethod = method_exists($router, 'aliasMiddleware') ? 'aliasMiddleware' : 'middleware';
+        $router->$middlewareMethod('console_protect', Http\Middlewares\Console::class);
 
         // Publish config.
         $this->publishes([
