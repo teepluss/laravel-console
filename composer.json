@@ -25,7 +25,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Teepluss\\Console\\ConsoleServiceProvider::class"
+                "Teepluss\\Console\\ConsoleServiceProvider"
             ]
         }
     },
