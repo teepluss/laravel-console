@@ -27,8 +27,6 @@ To install through composer, simply run the following command:
 php composer require teepluss/console
 ```
 
-:
-
 If you don't use Laravel 5.5+ and its [package discovery](https://laravel.com/docs/5.5/packages#package-discovery) feature, register the console service provider in `config/app.php`:
 
 ```php
