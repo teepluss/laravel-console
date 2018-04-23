@@ -1,29 +1,34 @@
 {
-	"name": "teepluss/console",
-	"description": "Browser console for Laravel Framework.",
-	"keywords": [
-		"laravel",
-		"browser",
-		"console"
-	],
-	"license": "MIT",
-    "authors": [
-    {
+    "name": "teepluss/console",
+    "description": "Browser console for Laravel Framework.",
+    "keywords": [
+        "laravel",
+        "browser",
+        "console"
+    ],
+    "license": "MIT",
+    "authors": [{
         "name": "Teepluss",
         "email": "teepluss@gmail.com",
         "homepage": "https://github.com/teepluss",
         "role": "Developer"
-    }
-    ],
-	"require": {
-		"php": ">=5.5.9",
-		"illuminate/support": ">=5.1.0"
-	},
-	"autoload": {
-		"psr-4": {
-			"Teepluss\\Console\\": "src/"
-		}
-	},
-	"minimum-stability": "dev",
+    }],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": ">=5.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Teepluss\\Console\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Teepluss\\Console\\ConsoleServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
