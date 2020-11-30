@@ -1,6 +1,6 @@
 <?php namespace Teepluss\Console;
 
-use Exception;
+use Throwable;
 use Monolog\Handler\BrowserConsoleHandler;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -12,10 +12,10 @@ class Handler extends ExceptionHandler {
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Throwable  $e
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $e)
+    public function render($request, Throwable $e)
     {
         Console::addProfile('error', array(
             'type'    => $e->getCode(),
